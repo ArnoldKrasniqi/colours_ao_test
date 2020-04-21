@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">colours</string>
+    <string name="add_random_color">Add random color</string>
+</resources>
