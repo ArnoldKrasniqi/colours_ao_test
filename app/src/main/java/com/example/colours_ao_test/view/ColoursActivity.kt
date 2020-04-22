@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,9 +38,9 @@ class ColoursActivity : AppCompatActivity() {
 
         colourActivityViewModel.loadingState.observe(this, Observer {
             when (it) {
-                ColoursActivityViewModel.LoadingState.LOADING -> loading()
-                is ColoursActivityViewModel.LoadingState.SUCCESS -> successful(it.listOfWords)
-                is ColoursActivityViewModel.LoadingState.FAILURE -> failure(it.errorMessage)
+                ColoursActivityViewModel.LoadingState.Loading -> loading()
+                is ColoursActivityViewModel.LoadingState.OnSuccess -> successful(it.listOfWords)
+                is ColoursActivityViewModel.LoadingState.OnFailure -> failure(it.errorMessage)
             }
         })
 

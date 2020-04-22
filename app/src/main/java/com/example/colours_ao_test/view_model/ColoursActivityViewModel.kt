@@ -21,7 +21,7 @@ class ColoursActivityViewModel(
     private var mLoadingState = MutableLiveData<LoadingState>()
 
     fun getWords() {
-        mLoadingState.value = LoadingState.LOADING
+        mLoadingState.value = LoadingState.Loading
         val listOfColourEntity = ArrayList<ColourEntity>()
          viewModelScope.launch {
             try {
@@ -34,13 +34,13 @@ class ColoursActivityViewModel(
                         )
                     }
                 }
-                mLoadingState.postValue(LoadingState.SUCCESS(listOfColourEntity))
+                mLoadingState.postValue(LoadingState.OnSuccess(listOfColourEntity))
 
             } catch (e : Exception){
                 if (e.message != null) {
-                    mLoadingState.postValue(LoadingState.FAILURE(e.message))
+                    mLoadingState.postValue(LoadingState.OnFailure(e.message))
                 } else {
-                    mLoadingState.postValue(LoadingState.FAILURE("No Error Message!"))
+                    mLoadingState.postValue(LoadingState.OnFailure("No Error Message!"))
                 }
             }
         }
@@ -54,8 +54,8 @@ class ColoursActivityViewModel(
    }
 
     sealed class LoadingState {
-        object LOADING : LoadingState()
-        data class SUCCESS(val listOfWords : ArrayList<ColourEntity>) : LoadingState()
-        data class FAILURE(val errorMessage : String?) : LoadingState()
+        object Loading : LoadingState()
+        data class OnSuccess(val listOfWords : ArrayList<ColourEntity>) : LoadingState()
+        data class OnFailure(val errorMessage : String?) : LoadingState()
     }
 }

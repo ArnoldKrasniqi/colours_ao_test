@@ -53,7 +53,7 @@ class ColoursActivityViewModelUnitTest {
         viewModel.getWords()
 
         //then
-        Assert.assertTrue(viewModel.loadingState.value is ColoursActivityViewModel.LoadingState.SUCCESS)
+        Assert.assertTrue(viewModel.loadingState.value is ColoursActivityViewModel.LoadingState.OnSuccess)
         verify { loadingObserver.onChanged(any()) }
     }
 
@@ -64,7 +64,7 @@ class ColoursActivityViewModelUnitTest {
         viewModel.getWords()
 
         //then
-        Assert.assertTrue(viewModel.loadingState.value is ColoursActivityViewModel.LoadingState.FAILURE)
+        Assert.assertTrue(viewModel.loadingState.value is ColoursActivityViewModel.LoadingState.OnFailure)
         verify { loadingObserver.onChanged(any()) }
     }
 }
